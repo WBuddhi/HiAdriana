@@ -8,3 +8,7 @@ class Answer(models.Model):
     statement = models.ForeignKey(Statement, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length = 300)
 
+
+class QusJsonFile(models.Model):
+    TimeStamp = models.DateField('date uploaded')
+    document = models.FileField(upload_to = 'Qusfiles/')

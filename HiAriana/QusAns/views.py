@@ -1,16 +1,25 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, HttpResponse
+from .forms import DocumentForm
 
 from . import QusAnswer
 import json
 
 def index(request):
-    file_path = './QusAns/Questions.json'
-    if file_path != None:
-        Qus_Ans = get_qusans(file_path)
-        Statement = Qus_Ans.Statement
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            # file_path = request.FILES['file']
+            # #file_path = './QusAns/Questions.json'
+            # if file_path != None:
+            #     Qus_Ans = get_qusans(file_path)
+            #     Statement = Qus_Ans.Statement
 
-        return HttpResponse(Statement)
-    else: return HttpResponse("File not loaded")
+            return HttpResponseRedirect(Statement)
+    else: form = UploadQusFile()
+    
+    return render(request, 'QusAns/index.html', {'form':form})
 
 def get_qusans(file_path):
     with open(file_path) as f:
