@@ -2,7 +2,7 @@ from django.db import models
 
 class Statement(models.Model):
     Statement_text = models.CharField(max_length = 300)
-    pub_datetime = models.DateField('date published')
+    pub_datetime = models.DateField('date published', auto_now_add=True)
 
 class Answer(models.Model):
     statement = models.ForeignKey(Statement, on_delete=models.CASCADE)
@@ -11,4 +11,4 @@ class Answer(models.Model):
 
 class QusJsonFile(models.Model):
     TimeStamp = models.DateField('date uploaded')
-    document = models.FileField(upload_to = 'Qusfiles/')
+    document = models.FileField(upload_to = 'Qusfiles/', auto_now_add=True)

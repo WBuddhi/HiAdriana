@@ -17,7 +17,7 @@ def index(request):
             #     Statement = Qus_Ans.Statement
 
             return HttpResponseRedirect(Statement)
-    else: form = UploadQusFile()
+    else: form = DocumentForm()
     
     return render(request, 'QusAns/index.html', {'form':form})
 
