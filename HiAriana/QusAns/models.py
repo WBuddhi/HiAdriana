@@ -10,5 +10,5 @@ class Answer(models.Model):
 
 
 class QusJsonFile(models.Model):
-    TimeStamp = models.DateField('date uploaded')
-    document = models.FileField(upload_to = 'Qusfiles/', auto_now_add=True)
+    TimeStamp = models.DateField('date uploaded', auto_now_add=True)
+    document = models.FileField(upload_to = 'Qusfiles/')
