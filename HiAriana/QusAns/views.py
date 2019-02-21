@@ -16,7 +16,7 @@ def index(request):
             #     Qus_Ans = get_qusans(file_path)
             #     Statement = Qus_Ans.Statement
 
-            return HttpResponseRedirect(Statement)
+            return HttpResponse('Uploaded')
     else: form = DocumentForm()
     
     return render(request, 'QusAns/index.html', {'form':form})
