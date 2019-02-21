@@ -9,6 +9,7 @@ def index(request):
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
+            print(form)
             form.save()
             # file_path = request.FILES['file']
             # #file_path = './QusAns/Questions.json'
