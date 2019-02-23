@@ -65,6 +65,15 @@ def process_answer(Answer, qus_pk):
     
     return new_stment, new_answers, QA_module.End_of_Qus
 
+def generate_list_of_qa(qus_pk):
+    #   Get a list of QA to present
+
+    qus = QA_JFile.objects.get(pk = qus_pk)
+
+    #   Get list of statement texts including answers
+    sa_list = get_sa_list(qus)
+    return sa_list
+
 def get_qus_entry(qus_pk):
     #   Get json file questionnaire from database
     
