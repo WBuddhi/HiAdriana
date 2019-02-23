@@ -1,0 +1,9 @@
+<ul>
+    {% for choices in qa_head %}
+        <li>{{choices.Statement}} - {{choices.Answer}}</li>
+    {% endfor %}
+        <li>{{  qa_end  }}
+</ul>
+
+<a href="{% url 'QusAns:index' %}">Load New Question?</a>
+
