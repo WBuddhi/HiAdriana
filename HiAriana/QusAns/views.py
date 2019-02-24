@@ -10,28 +10,31 @@ import os
 from . import QusAnswer
 from . import QusAnsDB as DB
 
-from QusAns.serializers import FileUploadSerializer, QA_data, QA_input, Results
+from QusAns.serializers import FileUploadSerializer, QA_data, QA_input
 from rest_framework import viewsets, views, status
 from rest_framework.parsers import FileUploadParser, MultiPartParser, FormParser
 from rest_framework.response import Response
 
-# class FileUploadView(views.APIView):
-#         parser_classes = (FileUploadParser,)
-
-#         def post(self, request, format='json'):
-#                 save_path = os.path.join(str(settings.MEDIA_ROOT), 'Qusfiles', str(request.FILES['file']))
-#                 path = default_storage.save(save_path, request.FILES['file'])
-#                 return Response(path, status.HTTP_201_CREATED)
 
 class FileUploadView(viewsets.ModelViewSet):
+        '''
+                View to upload questionnaire json file:
+                Loads the file into the database
+        '''
+
         queryset = FileUpload.objects.all()
         serializer_class = FileUploadSerializer
         parser_classes = (MultiPartParser, FormParser,)
 
 class Get_QA(viewsets.ViewSet):
-        #       Get latest uploaded questionnaire file and get statement and answer
+        '''
+                Gets the Question and Answers for each step
+                At the end of the Questionnaire, returns a dict of al the Questions and Answers
+        '''
         
         def list(self, request):
+                #       Initialisation process, loads the latest file from the #       database and extracts Question and Answers
+
                 File = FileUpload.objects.latest('pub_datetime')
                 path = File.Upload.path
                 pk, Statement, Answers = DB.init_db(path)
@@ -41,18 +44,22 @@ class Get_QA(viewsets.ViewSet):
                 return Response(serializer.data)
         
         def post(self, request):
+                #       Updates latest question with answer, updates answer 
+                #       Updates database and get new question and answer
+                #       Generates a list off all Questions and Answers at end
+
                 QA_input_data = QA_input(request.data)
                 data = QA_input_data.data
-                print(data)
-                Statement, Answers, End_of_Qus = DB.process_answer(str(data['Answer']), data['pk'])
+                Statement, Answers, End_of_Qus = DB.process_answer(str(data             ['Answer']), data['pk'])
                 if not End_of_Qus:
-                        data_dict = {'pk':data['pk'], 'Statement':Statement, 'Answers':Answers}
+                        #       Generates next question 
+                        data_dict = {'pk':data['pk'], 'Statement':Statement,
+                                'Answers':Answers}
                         serializer = QA_data(data_dict)
                         return Response(serializer.data)
                 else:
+                        #       End of Questions
                         qa_list = DB.generate_list_of_qa(data['pk'])
-                        serializer = Results(qa_list)
-                        # print(serializer.get_value())
                         return Response(qa_list)
 
 
