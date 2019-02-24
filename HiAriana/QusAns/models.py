@@ -1,6 +1,11 @@
 from django.db import models
 
+class FileUpload(models.Model):
+    Upload = models.FileField(upload_to='Qusfiles')
+    pub_datetime = models.DateTimeField('Timestamp', auto_now_add=True)
+
 class QA_JFile(models.Model):
+    upload = models.ForeignKey(FileUpload, on_delete=models.CASCADE)
     QA_File = models.CharField(max_length = 10000)
     pub_datetime = models.DateTimeField('Timestamp', auto_now_add=True)
 

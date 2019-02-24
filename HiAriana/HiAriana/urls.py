@@ -15,8 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import url
 
+from rest_framework import routers
+from QusAns import views
+
+router = routers.DefaultRouter()
+router.register(r'upload', views.FileUploadView)
+router.register(r'Get_QA', views.Get_QA, base_name='GetQA')
+#urlpatterns = [
+#     path('QusAns/', include('QusAns.urls')),
+#     path('admin/', admin.site.urls),
+# ]
 urlpatterns = [
+    path('', include(router.urls)),
     path('QusAns/', include('QusAns.urls')),
     path('admin/', admin.site.urls),
+    # url(r'^Qus_upload', FileUploadView.as_view())
+    #path('Upload/', FileUploadView.as_view())
 ]
