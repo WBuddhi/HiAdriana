@@ -1,3 +1,13 @@
-<p>
-  questionnaire works!
-</p>
+<!-- <app-qa-form></app-qa-form> -->
+<div class="container">
+    <h1>{{Statement}}</h1>
+    <form #qaForm='ngForm'>
+      <div class="form-group">
+        <label for="Statement">Answers:</label>
+        <select #Ans_select class="form-group" id="Answers">
+          <option *ngFor="let Ans of Answers" value:Ans>{{Ans}}</option>
+        </select>
+      </div>
+      <button (click)="next_qa(Ans_select.value)">Submit</button>
+    </form>
+  </div>

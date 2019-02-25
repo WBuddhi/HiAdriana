@@ -20,4 +20,16 @@ export class ApiService {
       }
       )
   }
+
+  public start_qa(){
+    return this.httpClient.get(this.API_URL + '/Get_QA/')
+  }
+  public get_next_qa(answer){
+    return this.httpClient.post(
+      this.API_URL + '/Get_QA/', answer,
+      { headers: 
+        {'enctype':'mulitpart/form-data'}
+      }
+    )
+  }
 }

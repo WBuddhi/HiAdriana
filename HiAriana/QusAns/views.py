@@ -50,6 +50,7 @@ class Get_QA(viewsets.ViewSet):
 
                 QA_input_data = QA_input(request.data)
                 data = QA_input_data.data
+                print(data)
                 Statement, Answers, End_of_Qus = DB.process_answer(str(data             ['Answer']), data['pk'])
                 if not End_of_Qus:
                         #       Generates next question 
