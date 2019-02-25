@@ -8,20 +8,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { QAComponent } from './qa/qa.component';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
-import { ResultsComponent } from './results/results.component';
-import { QAFormComponent } from './qa-form/qa-form.component';
-
-
 
 @NgModule({
   declarations: [
     AppComponent,
     QAComponent,
     QuestionnaireComponent,
-    ResultsComponent,
-    QAFormComponent,
-    
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,

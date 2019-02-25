@@ -12,13 +12,17 @@ const URL = 'http://localhost:8000/upload/';
 export class QAComponent implements OnInit {
 
   constructor(private  apiService:  ApiService) { }
+  
+  Start_QA = true;
+  fileToUpload: File = null;
 
   ngOnInit() {}
 
-  fileToUpload: File = null;
+
   handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
-    return this.apiService.uploadfile(this.fileToUpload).subscribe((response) => {console.log(response);});
+    return this.apiService.uploadfile(this.fileToUpload).subscribe((response) => {console.log(response);
+      this.Start_QA = false;});
   };
 
 }

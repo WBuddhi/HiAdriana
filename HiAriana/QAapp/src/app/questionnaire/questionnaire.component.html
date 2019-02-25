@@ -1,5 +1,5 @@
 <!-- <app-qa-form></app-qa-form> -->
-<div class="container">
+<div [hidden]="!QA_Form"  class="container">
     <h1>{{Statement}}</h1>
     <form #qaForm='ngForm'>
       <div class="form-group">
@@ -11,3 +11,15 @@
       <button (click)="next_qa(Ans_select.value)">Submit</button>
     </form>
   </div>
+
+ <div [hidden]="QA_Form" class="container">
+   <ul>
+     <li *ngFor="let entry of Entries">
+       {{entry['Statement']}} - {{entry['Answer']}}
+     </li>
+     <li>
+        {{Last_Entry['Statement']}}
+     </li>
+   </ul>
+   <a  routerLink= "/qa">Load New Question?</a>
+ </div> 
