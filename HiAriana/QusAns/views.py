@@ -12,7 +12,7 @@ from . import QusAnsDB as DB
 
 from QusAns.serializers import FileUploadSerializer, QA_data, QA_input
 from rest_framework import viewsets, views, status
-from rest_framework.parsers import FileUploadParser, MultiPartParser, FormParser
+from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
 from rest_framework.response import Response
 
 
@@ -21,10 +21,10 @@ class FileUploadView(viewsets.ModelViewSet):
                 View to upload questionnaire json file:
                 Loads the file into the database
         '''
-
+        
         queryset = FileUpload.objects.all()
         serializer_class = FileUploadSerializer
-        parser_classes = (MultiPartParser, FormParser,)
+        parser_classes = (MultiPartParser, FormParser, JSONParser,)
 
 class Get_QA(viewsets.ViewSet):
         '''

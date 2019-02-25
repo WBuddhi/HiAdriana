@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from  '../api.service';
+import {  FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
+
+const URL = 'http://localhost:8000/upload/';
 
 @Component({
   selector: 'app-qa',
@@ -7,9 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QAComponent implements OnInit {
 
-  constructor() { }
+  constructor(private  apiService:  ApiService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
+
+  fileToUpload: File = null;
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+    return this.apiService.uploadfile(this.fileToUpload).subscribe((response) => {console.log(response);});
+  };
 
 }
+
+
