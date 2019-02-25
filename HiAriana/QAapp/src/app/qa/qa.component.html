@@ -1,7 +1,13 @@
-<div class="form-group">
-    <label for="file">Choose File</label>
-    <input type="file"
-           id="file"
-           (change)="handleFileInput($event.target.files)">
-</div>
-<a [hidden] = "Start_QA" routerLink= "/questionnaire">Start Questionnaire</a>
+<mat-card class='upload-card'> 
+    <mat-card-subtitle>Upload File</mat-card-subtitle>
+    <div class="qa_container" layout-align="center center">
+        <input type="file" id="file" placeholder="Choose File"
+                (change)="handleFileInput($event.target.files)">
+    </div>
+    <mat-card-actions>
+        <button mat-flat-button routerLink= "/questionnaire">Start!</button> 
+    </mat-card-actions>
+    
+</mat-card> 
+
+
