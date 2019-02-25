@@ -1,26 +1,37 @@
-<div [hidden]="!QA_Form"  class="container">
-    <h1>{{Statement}}</h1>
-    <form #qaForm='ngForm'>
-      <div class="form-group">
-        <label for="Statement">Answers:</label>
-        <select #Ans_select class="form-group" id="Answers">
-          <option *ngFor="let Ans of Answers" value:Ans>{{Ans}}</option>
-        </select>
-      </div>
-      <button (click)="next_qa(Ans_select.value)">Submit</button>
-    </form>
+<div [hidden]="!QA_Form">
+    <div class="ques-container">
+      <mat-card>
+        <h4>{{Statement}}</h4>
+        <form>
+            <div class="form-group">
+              <select #Ans_select class="form-group" id="Answers">
+                <option *ngFor="let Ans of Answers" value:Ans>{{Ans}}</option>
+              </select>
+            </div>
+        </form>
+        <mat-card-actions>
+            <button (click)="next_qa(Ans_select.value)" mat-button>SUBMIT
+              </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
   </div>
 
  <div [hidden]="QA_Form" class="container">
-   <ul>
-     <li *ngFor="let entry of Entries">
-       {{entry['Statement']}} - {{entry['Answer']}}
-     </li>
-     <li>
-        {{Last_Entry['Statement']}}
-     </li>
-   </ul>
-   <a  routerLink= "/qa">Load New Question?</a>
- </div> 
-
- 
+   <div class="ques-container">
+     <mat-card>
+       <h4>Outcomes</h4>
+       <mat-card-content>
+          <mat-list role="list" *ngFor="let entry of Entries">
+              <mat-list-item role="listitem">{{entry['Statement']}} - {{entry['Answer']}}</mat-list-item>
+            </mat-list>
+            <mat-list role="list">
+              <mat-list-item role="listitem">{{Last_Entry['Statement']}}</mat-list-item>
+            </mat-list>
+       </mat-card-content>
+       <mat-card-actions>
+         <button mat-button [routerLink]="'/qa'">RETURN</button>
+       </mat-card-actions>
+     </mat-card>
+   </div>
+ </div>

@@ -2,5 +2,6 @@
 
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-html, body { height: 100%; width: 400px}
+html, body { height: 100%; width: 500px; margin-left: auto;
+    margin-right: auto;}
 body { margin: 100; font-family: Roboto, "Helvetica Neue", sans-serif }

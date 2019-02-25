@@ -4,9 +4,11 @@
         <input type="file" id="file" placeholder="Choose File"
                 (change)="handleFileInput($event.target.files)">
     </div>
+    <div [hidden] = 'Start_QA'>
     <mat-card-actions>
         <button mat-flat-button routerLink= "/questionnaire">Start!</button> 
     </mat-card-actions>
+    </div>
     
 </mat-card> 
 

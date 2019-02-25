@@ -1,6 +1,7 @@
 import { HttpClientModule } from  '@angular/common/http';
 
 import { BrowserModule } from '@angular/platform-browser';
+import {CommonModule} from '@angular/common'
 import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 
@@ -12,7 +13,7 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { THNavbarComponent } from './thnavbar/thnavbar.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule, MatDialogModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule, MatDialogModule, MatFormFieldModule, MatInputModule,MatSelectModule} from '@angular/material';
 import { THDashboardComponent } from './thdashboard/thdashboard.component';
 import { NameComponent } from './name/name.component';
 
@@ -29,6 +30,7 @@ import { NameComponent } from './name/name.component';
 
   imports: [
     BrowserModule,BrowserAnimationsModule,
+    CommonModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
@@ -46,7 +48,8 @@ import { NameComponent } from './name/name.component';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule,
     ],
   providers: [],
   bootstrap: [AppComponent]
