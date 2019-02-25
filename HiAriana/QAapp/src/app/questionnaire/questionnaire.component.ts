@@ -17,7 +17,7 @@ export class QuestionnaireComponent implements OnInit {
   pk: number;
   QA_Form: boolean;
   Entries = [];
-  Last_Entry = [];
+  Last_Entry;
 
   ngOnInit() {
     this.QA_Form = true;
@@ -25,10 +25,21 @@ export class QuestionnaireComponent implements OnInit {
   }
   public start_qa_page(){
     this.apiService.start_qa().subscribe((data: Array<object>) => {
-      this.QA_Form = true;
-      this.pk = data['pk'];
-      this.Statement = data['Statement'];
-      this.Answers = data['Answers']
+      if (data.hasOwnProperty('Statement')==true){
+        this.QA_Form = true;
+        this.pk = data['pk'];
+        this.Statement = data['Statement'];
+        this.Answers = data['Answers']
+      } else {
+        this.QA_Form = false;
+        this.Last_Entry = {'Statement':'Invalid File'};
+      }
+      
+    },Error =>{
+      if(Error != ''){
+        this.QA_Form = false;
+        this.Last_Entry = {'Statement':'Invalid File'};
+      }
     })
   }
   public next_qa(Ans: string){

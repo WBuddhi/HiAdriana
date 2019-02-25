@@ -20,8 +20,7 @@ export class QAComponent implements OnInit {
 
   handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
-    return this.apiService.uploadfile(this.fileToUpload).subscribe((response) => {console.log(response);
-      this.Start_QA = false;});
+    return this.apiService.uploadfile(this.fileToUpload).subscribe((response) => {this.Start_QA = false;});
   };
 
 }

@@ -22,12 +22,16 @@ class QusAns:
         #   Extract Initial Question and Answers
 
         if type(self.data) == dict:
-            for keys, values in self.data.items():
-                self.Statement = str(keys)
-                self.Answers = list(values.keys())
-                self.data = self.data[self.Statement]
-                if update_hist:
-                    self.data_hist.append({self.Statement: self.data})
+            try:
+                for keys, values in self.data.items():
+                    self.Statement = str(keys)
+                    self.Answers = list(values.keys())[:5]
+                    self.data = self.data[self.Statement]
+                    if update_hist:
+                        self.data_hist.append({self.Statement: self.data})
+            except:
+                self.End_of_Qus = True
+                self.Statement = "File Error"
         else: 
             self.Statement = self.data
             self.Answers = None
